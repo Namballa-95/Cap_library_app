@@ -1,0 +1,34 @@
+#Browse books
+GET http://localhost:4004/odata/v4/catalog/Books
+###
+#browse books by id 
+GET http://localhost:4004/odata/v4/catalog/Books('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee')
+
+###
+#insert a new book 
+POST http://localhost:4004/odata/v4/catalog/Books
+Content-Type: application/json
+    
+{
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "price": 10.99,
+    "stock": 100
+}
+
+###update the book using patch method
+PATCH  http://localhost:4004/odata/v4/catalog/Books('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee')
+Content-Type: application/json
+
+{
+    "title": "Atomic Habits",
+    "author": "F. Scott Fitzgerald",
+    "price": 12.99,
+    "stock": 80
+}
+
+###`delete the book using delete method
+DELETE http://localhost:4004/odata/v4/catalog/Books('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee')
+
+### another port : 39591 // dont run with another port, it will give error
+GET http://localhost:39591/odata/v4/catalog/Books

@@ -1,0 +1,39 @@
+{
+  "name": "CAP_01",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2.4",
+    "@sap/cds-dk": "^9",
+    "cds-plugin-ui5": "^0.17.0",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.49"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-bookshop": "cds watch --open bookshop/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy CAP_01 --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "watch-custom_view_bookshop": "cds watch --open customviewbookshop/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "requires": {
+    "db": {
+      "kind": "sqlite",
+      "credentials": {
+        "url": "db.sqlite"
+      },
+      "schema_evolution": "auto"
+    }
+  },
+  "private": true,
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/bookshop"
+  ]
+}
